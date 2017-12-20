@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsSrvResolver", "DnsSrvResolver\DnsSrvResolver.csproj", "{C494577C-6030-43FB-B848-E27ABF76C644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnsSrvResolver", "DnsSrvResolver\DnsSrvResolver.csproj", "{C494577C-6030-43FB-B848-E27ABF76C644}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "selfregisteringservice", "..\consulsqldemo\selfregisteringservice\selfregisteringservice.csproj", "{A2CF6345-864A-4583-8BD0-E1538B99E2FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsulServiceLookup.Tests", "ConsulServiceLookup.Tests\ConsulServiceLookup.Tests.csproj", "{BC2E6D56-F81A-447D-B509-1FB366B89CB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A2CF6345-864A-4583-8BD0-E1538B99E2FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CF6345-864A-4583-8BD0-E1538B99E2FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CF6345-864A-4583-8BD0-E1538B99E2FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2E6D56-F81A-447D-B509-1FB366B89CB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2E6D56-F81A-447D-B509-1FB366B89CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2E6D56-F81A-447D-B509-1FB366B89CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2E6D56-F81A-447D-B509-1FB366B89CB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
