@@ -6,17 +6,20 @@ using DnsClient;
 
 namespace DnsSrvResolver
 {
-    public abstract class ConsulServiceLookup
+    public class ConsulServiceLookup
     {
-        protected const string BaseDomain = "service.consul";
+        private readonly IStandardQueryBuilder _queryBuilder;
+        protected const string BaseDomain = "consul";
         private readonly string _scheme;
 
         private readonly Lazy<Stack<ServiceHostEntry>> _entries;
-        
 
-        protected ConsulServiceLookup()
+
+        public ConsulServiceLookup(IStandardQueryBuilder queryBuilder)
         {
-           _entries = new Lazy<Stack<ServiceHostEntry>>( ()=> ResolveService(GetDnsClient()));
+            _queryBuilder = queryBuilder;
+            _scheme = queryBuilder.Scheme;
+            _entries = new Lazy<Stack<ServiceHostEntry>>( ()=> ResolveService(GetDnsClient()));
         }
        
         private LookupClient GetDnsClient()
@@ -24,8 +27,6 @@ namespace DnsSrvResolver
             var dns = new LookupClient(IPAddress.Loopback, 8600);
             return dns;
         }
-
-      protected  abstract Stack<ServiceHostEntry> ResolveService(LookupClient lookupClient);
 
         public Uri GetNextUri()
         {
@@ -35,6 +36,14 @@ namespace DnsSrvResolver
             var next = _entries.Value.Pop();
             var builder = new UriBuilder(_scheme,next.HostName,next.Port);
             return builder.Uri;
+        }
+
+        protected virtual Stack<ServiceHostEntry> ResolveService(LookupClient lookupClient)
+        {
+            var serviceQuery = _queryBuilder.GetServiceQuery();
+            var ary = lookupClient.ResolveService(BaseDomain, serviceQuery);
+
+            return new Stack<ServiceHostEntry>(ary);
         }
     }
 }

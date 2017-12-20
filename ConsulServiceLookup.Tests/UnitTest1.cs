@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Net;
 using Xunit;
 using DnsSrvResolver;
@@ -10,13 +11,14 @@ namespace ConsulServiceLookup.Tests
         [Fact]
         public void StandardConsulLookup()
         {
-            var lookup = new DnsSrvResolver.StandardConsulLookup("demo-api");
+            var queryBuild = new StandardQueryBuilder("demo-api");
+            var lookup = new DnsSrvResolver.ConsulServiceLookup(queryBuild);
 
             var service = lookup.GetNextUri();
 
             Assert.IsType<Uri>(service);
-
-            Console.WriteLine(service.ToString());
+            
+            Debug.WriteLine(service.ToString());
         }
     }
 }

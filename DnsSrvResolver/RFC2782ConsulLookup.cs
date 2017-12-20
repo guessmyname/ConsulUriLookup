@@ -8,16 +8,20 @@ namespace DnsSrvResolver
         private readonly string _serviceName;
         private readonly string _servceProtocol;
 
-        public RFC2782ConsulLookup(string serviceName, string servceProtocol)
-        {
-            _serviceName = serviceName;
-            _servceProtocol = servceProtocol;
-        }
+        //public RFC2782ConsulLookup(string serviceName, string servceProtocol)
+        //{
+        //    _serviceName = serviceName;
+        //    _servceProtocol = servceProtocol;
+        //}
         protected override Stack<ServiceHostEntry> ResolveService(LookupClient lookupClient)
         {
             var ary = lookupClient.ResolveService(BaseDomain, _serviceName, _servceProtocol);
 
             return new Stack<ServiceHostEntry>(ary);
+        }
+
+        protected RFC2782ConsulLookup(IStandardQueryBuilder queryBuilder) : base(queryBuilder)
+        {
         }
     }
 }
